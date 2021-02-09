@@ -1,16 +1,22 @@
 package io.github.grebenindmitry.nutrado;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ProductData {
+    @SerializedName("product_name")
     private String name;
-    private int energy;
+    @SerializedName("nutrition_grades")
     private String score;
+    @SerializedName("image_front_thumb_url")
     private String thumbUrl;
+    @SerializedName("nutriments")
+    private ProductNutriments nutriments;
 
     public ProductData(String name, int energy, String score, String thumbUrl) {
         this.name = name;
-        this.energy = energy;
         this.score = score;
         this.thumbUrl = thumbUrl;
+        nutriments.setEnergy(energy);
     }
 
     public String getName() {
@@ -21,12 +27,12 @@ public class ProductData {
         this.name = name;
     }
 
-    public int getEnergy() {
-        return energy;
+    public float getEnergy() {
+        return nutriments.getEnergy();
     }
 
-    public void setEnergy(int energy) {
-        this.energy = energy;
+    public void setEnergy(float energy) {
+        nutriments.setEnergy(energy);
     }
 
     public String getScore() {
