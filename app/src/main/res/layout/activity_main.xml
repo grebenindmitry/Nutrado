@@ -26,20 +26,24 @@
         app:layout_anchorGravity="center"
         app:srcCompat="@drawable/outline_qr_code_scanner_24" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:navigationIcon="@drawable/outline_menu_24"
-        app:menu="@menu/menu_nav" />
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="end"
+            app:fabAnimationMode="scale"
+            app:hideOnScroll="true"
+            app:menu="@menu/menu_nav"
+            app:navigationIcon="@drawable/outline_menu_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start" />
+        android:layout_gravity="start"
+        tools:visibility="gone" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

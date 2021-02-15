@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class OpenFoodFactsSearch {
     @SerializedName("products")
-    private ProductData[] products;
+    private Product[] products;
 
-    public OpenFoodFactsSearch(ProductData[] products) {
+    public OpenFoodFactsSearch(Product[] products) {
         this.products = products;
     }
 
-    public ProductData[] getProducts() {
+    public Product[] getProducts() {
         return products;
     }
 
-    public void setProducts(ProductData[] products) {
+    public void setProducts(Product[] products) {
         this.products = products;
     }
 }

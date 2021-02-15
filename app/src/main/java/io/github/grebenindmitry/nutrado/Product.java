@@ -1,8 +1,14 @@
 package io.github.grebenindmitry.nutrado;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ProductData {
+@Entity(tableName = "products")
+public class Product {
+    @PrimaryKey private long id;
     @SerializedName("product_name")
     private String name;
     @SerializedName("nutrition_grades")
@@ -12,18 +18,35 @@ public class ProductData {
     @SerializedName("nutriments")
     private ProductNutriments nutriments;
 
-    public ProductData() {
+    public Product() {
+        this.id = -1;
         this.name = "";
         this.grade = "";
         this.thumbUrl = "";
         this.nutriments = new ProductNutriments();
     }
 
-    public ProductData(String name, int energy, String score, String thumbUrl) {
+    public Product(String name, int energy, String score, String thumbUrl) {
         this.name = name;
         this.grade = score;
         this.thumbUrl = thumbUrl;
         nutriments.setEnergy(energy);
+    }
+
+    public Product(int id, String name, int energy, String score, String thumbUrl) {
+        this.id = id;
+        this.name = name;
+        this.grade = score;
+        this.thumbUrl = thumbUrl;
+        nutriments.setEnergy(energy);
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {
@@ -32,6 +55,14 @@ public class ProductData {
     
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ProductNutriments getNutriments() {
+        return nutriments;
+    }
+
+    public void setNutriments(ProductNutriments nutriments) {
+        this.nutriments = nutriments;
     }
 
     public String getPrintEnergy() {

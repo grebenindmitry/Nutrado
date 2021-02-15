@@ -11,11 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.ListPreloader;
-import com.bumptech.glide.util.ViewPreloadSizeProvider;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    private final ProductData[] productData;
+    private final Product[] productData;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final View view;
@@ -30,7 +28,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
     }
 
-    public ProductAdapter(ProductData[] newProductData) {
+    public ProductAdapter(Product[] newProductData) {
         productData = newProductData;
     }
 
