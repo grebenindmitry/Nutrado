@@ -6,15 +6,22 @@ public class ProductData {
     @SerializedName("product_name")
     private String name;
     @SerializedName("nutrition_grades")
-    private String score;
+    private String grade;
     @SerializedName("image_front_thumb_url")
     private String thumbUrl;
     @SerializedName("nutriments")
     private ProductNutriments nutriments;
 
+    public ProductData() {
+        this.name = "";
+        this.grade = "";
+        this.thumbUrl = "";
+        this.nutriments = new ProductNutriments();
+    }
+
     public ProductData(String name, int energy, String score, String thumbUrl) {
         this.name = name;
-        this.score = score;
+        this.grade = score;
         this.thumbUrl = thumbUrl;
         nutriments.setEnergy(energy);
     }
@@ -27,20 +34,20 @@ public class ProductData {
         this.name = name;
     }
 
-    public float getEnergy() {
-        return nutriments.getEnergy();
+    public String getPrintEnergy() {
+        return nutriments.getPrintEnergy();
     }
 
     public void setEnergy(float energy) {
         nutriments.setEnergy(energy);
     }
 
-    public String getScore() {
-        return score;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setScore(String score) {
-        this.score = score;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public String getThumbUrl() {

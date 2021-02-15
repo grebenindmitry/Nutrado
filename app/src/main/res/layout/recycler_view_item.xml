@@ -8,17 +8,27 @@
 
   <ImageView
       android:id="@+id/product_image"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
+      android:layout_width="60dp"
+      android:layout_height="60dp"
       android:layout_marginStart="16dp"
-      android:layout_marginLeft="16dp"
       android:layout_marginTop="16dp"
       android:layout_marginBottom="16dp"
       android:contentDescription="@string/image_alt"
+      android:padding="8dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       tools:src="@tools:sample/avatars" />
+
+  <TextView
+      android:id="@+id/product_grade"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="@+id/product_image"
+      app:layout_constraintEnd_toEndOf="@+id/product_image"
+      tools:text="A" />
 
   <TextView
       android:id="@+id/product_energy"

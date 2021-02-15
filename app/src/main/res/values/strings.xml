@@ -10,5 +10,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="image_alt">Product image</string>
-    <string name="energy_kj">%1$.0f kCal</string>
+    <string name="energy_kj">%1$s kCal</string>
+    <string name="qr_alt">Open QR Reader</string>
 </resources>

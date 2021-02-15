@@ -4,10 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.util.ViewPreloadSizeProvider;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private final ProductData[] productData;
@@ -44,7 +49,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         Context context = view.getContext();
         ((TextView) view.findViewById(R.id.product_name)).setText(productData[position].getName());
         ((TextView) view.findViewById(R.id.product_energy)).setText(context
-                .getString(R.string.energy_kj, productData[position].getEnergy()));
+                .getString(R.string.energy_kj, productData[position].getPrintEnergy()));
+        String oof = productData[position].getGrade().toUpperCase();
+        ((TextView) view.findViewById(R.id.product_grade)).setText(oof);
+        Glide.with(view)
+                .load(productData[position].getThumbUrl())
+                .circleCrop()
+                .into(((ImageView) view.findViewById(R.id.product_image)));
     }
 
     @Override
