@@ -5,13 +5,12 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Product.class, ProductList.class, ProductToList.class}, version = 1)
+@Database(entities = {Product.class, ProductList.class, ProductListCrossref.class}, version = 1)
 @TypeConverters(Converters.class)
 public abstract class MyDatabase extends RoomDatabase {
-    public abstract ProductDAO productDAO();
+    public abstract MyDAO myDAO();
 
     private static volatile MyDatabase INSTANCE;
 

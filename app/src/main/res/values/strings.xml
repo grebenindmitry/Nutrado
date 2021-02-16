@@ -12,4 +12,6 @@
     <string name="image_alt">Product image</string>
     <string name="energy_kj">%1$s kCal</string>
     <string name="qr_alt">Open QR Reader</string>
+    <string name="save_alt">Save to list</string>
+    <string name="lists_label">Lists</string>
 </resources>

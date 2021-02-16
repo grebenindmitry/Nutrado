@@ -1,34 +1,19 @@
 package io.github.grebenindmitry.nutrado;
 
 import android.os.Bundle;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.View;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import org.json.JSONObject;
+import java.util.List;
+import java.util.Vector;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,40 +24,36 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.bottomAppBar);
         setSupportActionBar(toolbar);
 
-        ((BottomAppBar) toolbar).setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
-                if (drawerLayout.isOpen()) {
-                    drawerLayout.close();
-                } else {
-                    drawerLayout.open();
-                }
+        RecyclerView listsRecyclerView = findViewById(R.id.nav_list_recycler);
+        listsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        Executors.newSingleThreadExecutor().execute(() -> {
+            final MyDAO dao = MyDatabase.getDatabase(getApplicationContext()).myDAO();
+            List<ProductList> lists = dao.getLists();
+            runOnUiThread(() -> {
+                listsRecyclerView.setAdapter(new ListsAdapter(lists));
+            });
+        });
+
+        toolbar.setNavigationOnClickListener(v -> {
+            DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+            if (drawerLayout.isOpen()) {
+                drawerLayout.close();
+            } else {
+                drawerLayout.open();
             }
         });
 
-        final String url = "https://world.openfoodfacts.org/category/plant-based-foods-and-beverages.json?page-size=24";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        OpenFoodFactsSearch openFoodFactsSearch = new Gson().fromJson(response, OpenFoodFactsSearch.class);
-                        RecyclerView recyclerView = ((RecyclerView) findViewById(R.id.recycler_view));
-                        ProgressBar progressBar = ((ProgressBar) findViewById(R.id.recycler_loading_bar));
+        RecyclerView productsRecyclerView = findViewById(R.id.recycler_view);
+        productsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        OpenFoodFactsLoader loader = new OpenFoodFactsLoader(getApplicationContext(), "https://world.openfoodfacts.org");
+        loader.setRecyclerAdapter(100, "plant-based-foods-and-beverages", productsRecyclerView, findViewById(R.id.recycler_progress_bar));
 
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        recyclerView.setAdapter(new ProductAdapter(openFoodFactsSearch.getProducts()));
-                        recyclerView.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }));
+        ((SwipeRefreshLayout) findViewById(R.id.swipe_refresh)).setOnRefreshListener(() -> {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
+        });
     }
 
     @Override

@@ -2,90 +2,98 @@ package io.github.grebenindmitry.nutrado;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "products")
 public class Product {
-    @PrimaryKey private long id;
+    @SerializedName("id")
+    @PrimaryKey private long productId;
     @SerializedName("product_name")
     private String name;
     @SerializedName("nutrition_grades")
     private String grade;
-    @SerializedName("image_front_thumb_url")
+    @SerializedName("image_front_small_url")
     private String thumbUrl;
     @SerializedName("nutriments")
     private ProductNutriments nutriments;
 
     public Product() {
-        this.id = -1;
+        this.productId = -1;
         this.name = "";
         this.grade = "";
         this.thumbUrl = "";
         this.nutriments = new ProductNutriments();
     }
 
-    public Product(String name, int energy, String score, String thumbUrl) {
+    public Product(int id, String name, float energy, String score, String thumbUrl) {
+        this.productId = id;
         this.name = name;
         this.grade = score;
         this.thumbUrl = thumbUrl;
+        this.nutriments = new ProductNutriments();
         nutriments.setEnergy(energy);
     }
 
-    public Product(int id, String name, int energy, String score, String thumbUrl) {
-        this.id = id;
-        this.name = name;
-        this.grade = score;
-        this.thumbUrl = thumbUrl;
-        nutriments.setEnergy(energy);
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
+    //getters
+    public long getProductId() {
+        return productId;
     }
 
     public String getName() {
         return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ProductNutriments getNutriments() {
-        return nutriments;
-    }
-
-    public void setNutriments(ProductNutriments nutriments) {
-        this.nutriments = nutriments;
-    }
-
-    public String getPrintEnergy() {
-        return nutriments.getPrintEnergy();
-    }
-
-    public void setEnergy(float energy) {
-        nutriments.setEnergy(energy);
     }
 
     public String getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
     public String getThumbUrl() {
         return thumbUrl;
+    }
+
+    public float getEnergy() {
+        return nutriments.getEnergy();
+    }
+
+    public String getPrintEnergy() {
+        return nutriments.getPrintEnergy();
+    }
+
+    public ProductNutriments getNutriments() {
+        return nutriments;
+    }
+    //end getters
+
+    //setters
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public void setThumbUrl(String thumbUrl) {
         this.thumbUrl = thumbUrl;
     }
+
+    public void setNutriments(ProductNutriments nutriments) {
+        this.nutriments = nutriments;
+    }
+
+    public void setEnergy(float energy) {
+        nutriments.setEnergy(energy);
+    }
+    //end setters
+
+    //methods
+    public boolean isFull() {
+        return (productId != -1 && !name.equals("") && !grade.equals("") && !thumbUrl.equals("") && !getPrintEnergy().equals("N/a"));
+    }
+    //end methods
 }

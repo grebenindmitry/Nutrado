@@ -8,17 +8,17 @@
 
   <ImageView
       android:id="@+id/product_image"
-      android:layout_width="60dp"
-      android:layout_height="60dp"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="16dp"
-      android:layout_marginBottom="16dp"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginBottom="10dp"
       android:contentDescription="@string/image_alt"
       android:padding="8dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      tools:src="@tools:sample/avatars" />
+      tools:src="@drawable/boopsnoot" />
 
   <TextView
       android:id="@+id/product_grade"
@@ -31,28 +31,40 @@
       tools:text="A" />
 
   <TextView
-      android:id="@+id/product_energy"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:layout_marginRight="16dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:text="@tools:sample/date/day_of_week" />
-
-  <TextView
       android:id="@+id/product_name"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
-      android:layout_marginLeft="16dp"
-      android:layout_marginEnd="16dp"
-      android:layout_marginRight="16dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginEnd="10dp"
+      android:maxLines="4"
+      android:textSize="18sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/product_energy"
       app:layout_constraintStart_toEndOf="@+id/product_image"
       app:layout_constraintTop_toTopOf="parent"
-      tools:text="@tools:sample/lorem" />
+      tools:text="Broccoli 1Broccoli 2Broccoli 3Broccoli 4Broccoli 5Broccoli 6Broccoli 7Broccoli 8" />
+
+  <TextView
+      android:id="@+id/product_energy"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="10dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/button_save"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="100 kCal" />
+
+  <ImageButton
+      android:id="@+id/button_save"
+      style="@style/Widget.Nutrado.ImageButton"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="10dp"
+      android:contentDescription="@string/save_alt"
+      android:src="@drawable/ic_outline_save_alt_24"
+      android:tooltipText="@string/save_alt"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,18 +5,18 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "lists")
 public class ProductList {
-    @PrimaryKey private final int id;
+    @PrimaryKey private final int listId;
     private String name;
     private String description;
 
-    public ProductList(int id, String name, String description) {
-        this.id = id;
+    public ProductList(int listId, String name, String description) {
+        this.listId = listId;
         this.name = name;
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public int getListId() {
+        return listId;
     }
 
     public String getName() {
