@@ -30,7 +30,7 @@ public class OpenFoodFactsLoader {
         this.requestQueue = Volley.newRequestQueue(context);
         this.url = url;
         this.pageNum = 1;
-        this.products = new Vector<Product>();
+        this.products = new Vector<>();
         retriesNum = 0;
     }
 
@@ -51,12 +51,14 @@ public class OpenFoodFactsLoader {
         retriesNum = 0;
         OpenFoodFactsSearch openFoodFactsSearch = new Gson().fromJson(response, OpenFoodFactsSearch.class);
         for (Product product : openFoodFactsSearch.getProducts()) {
+            if (this.products.size() == prodNum) {
+                this.recyclerView.setAdapter(new ProductAdapter(products));
+                this.recyclerView.setVisibility(View.VISIBLE);
+                this.progressBar.setVisibility(View.INVISIBLE);
+                break;
+            }
             if (product.isFull()) {
                 this.products.add(product);
-                if (this.products.size() == prodNum) {
-                    this.recyclerView.setAdapter(new ProductAdapter(products));
-                    this.recyclerView.setVisibility(View.VISIBLE);
-                }
             }
         }
         if (this.products.size() < this.prodNum) {

@@ -14,4 +14,11 @@
     <string name="qr_alt">Open QR Reader</string>
     <string name="save_alt">Save to list</string>
     <string name="lists_label">Lists</string>
+    <string name="add_list_title">Add list</string>
+    <string name="back">Back</string>
+    <string name="menu">Open menu</string>
+    <string name="setting_num_prod">Number of products to load</string>
+    <string name="setting_category_prod">Category of products to load</string>
+    <string name="setting_dark_mode">Dark mode</string>
+    <string name="setting_override_dark_mode">Override system dark mode</string>
 </resources>

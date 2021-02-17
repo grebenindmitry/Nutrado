@@ -58,12 +58,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     .load(product.getThumbUrl())
                     .circleCrop()
                     .into(((ImageView) view.findViewById(R.id.product_image)));
-            ((ImageButton) view.findViewById(R.id.button_save)).setOnClickListener((v) ->{
-                Executors.newSingleThreadExecutor().execute(() -> {
-                    final MyDAO dao = MyDatabase.getDatabase(v.getContext()).myDAO();
-                    dao.insertList(new ProductList(1, "oof", "fuck it"));
-                });
-            });
+            ((ImageButton) view.findViewById(R.id.button_save)).setOnClickListener(
+                    (v) -> Executors.newSingleThreadExecutor().execute(
+                            () -> {
+                                final MyDAO dao = MyDatabase.getDatabase(v.getContext()).myDAO();
+                                dao.insertList(new ProductList(position, "oof", "fuck it"));
+                            })
+            );
         } else {
             ((TextView) view.findViewById(R.id.product_name)).setText(product.getName());
             view.findViewById(R.id.button_save).setVisibility(View.INVISIBLE);

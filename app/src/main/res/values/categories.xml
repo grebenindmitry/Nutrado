@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_ids">
+        <item>plant-based-foods</item>
+        <item>snacks</item>
+        <item>beverages</item>
+        <item>dairies</item>
+        <item>meats</item>
+    </string-array>
+    <string-array name="category_titles">
+        <item>Plant-based foods</item>
+        <item>Snacks</item>
+        <item>Beverages</item>
+        <item>Dairies</item>
+        <item>Meats</item>
+    </string-array>
+</resources>

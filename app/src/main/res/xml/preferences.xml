@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreferenceCompat
+        app:key="overrideDarkMode"
+        app:title="@string/setting_override_dark_mode"
+        app:defaultValue="false" />
+
+    <SwitchPreferenceCompat
+        app:key="darkMode"
+        app:title="@string/setting_dark_mode"
+        app:dependency="overrideDarkMode"
+        app:defaultValue="false" />
+
+    <SeekBarPreference
+        app:key="prodNum"
+        app:singleLineTitle="true"
+        app:title="@string/setting_num_prod"
+        android:max="200"
+        app:min="10"
+        app:showSeekBarValue="true"
+        app:defaultValue="100" />
+
+    <ListPreference
+        app:key="prodCategory"
+        app:singleLine="true"
+        app:title="@string/setting_category_prod"
+        app:defaultValue="plant-based-foods"
+        app:entryValues="@array/category_ids"
+        app:entries="@array/category_titles" />
+</PreferenceScreen>
