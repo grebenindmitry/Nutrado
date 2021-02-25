@@ -21,4 +21,15 @@
     <string name="setting_category_prod">Category of products to load</string>
     <string name="setting_dark_mode">Dark mode</string>
     <string name="setting_override_dark_mode">Override system dark mode</string>
+    <string name="read_db">Read DB</string>
+    <string name="list_icon">List Icon</string>
+    <string name="online_title">Online</string>
+    <string name="online_desc">Products loaded from OpenFoodFacts API</string>
+    <string name="select_list">Select the list to save to</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="nutrition_grade_txt">Nutrition grade %1$s</string>
+    <string name="delete">Delete</string>
+    <string name="add_list">Add a list</string>
 </resources>

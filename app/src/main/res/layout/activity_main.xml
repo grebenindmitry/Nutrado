@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -31,20 +32,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:navigationIcon="@drawable/ic_outline_menu_24"
-            app:navigationContentDescription="@string/menu"
             app:fabAlignmentMode="end"
-            app:fabAnimationMode="scale"
+            app:fabAnimationMode="slide"
             app:hideOnScroll="true"
-            app:menu="@menu/menu_main" />
+            app:menu="@menu/menu_main"
+            app:navigationContentDescription="@string/menu"
+            app:navigationIcon="@drawable/ic_outline_menu_24" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        tools:visibility="invisible">
+        android:layout_gravity="start">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,7 +60,8 @@
                 android:text="@string/lists_label"
                 app:layout_constraintBottom_toTopOf="@id/divider"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
             <View
                 android:id="@+id/divider"
@@ -69,21 +70,38 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="?attr/colorOnBackground"
-                app:layout_constraintBottom_toTopOf="@+id/nav_list_recycler"
+                app:layout_constraintBottom_toTopOf="@id/coordinator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/nav_list_recycler"
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/coordinator"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider"
-                tools:listitem="@layout/nav_list_recycler_view_item" />
+                app:layout_constraintTop_toBottomOf="@+id/divider">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/nav_list_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/nav_list_recycler_view_item" />
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/add_list_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_margin="8dp"
+                    android:text="@string/add_list"
+                    app:icon="@drawable/ic_outline_add_24"
+                    app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
 

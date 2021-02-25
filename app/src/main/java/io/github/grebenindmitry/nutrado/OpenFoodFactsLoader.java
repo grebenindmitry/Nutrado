@@ -51,14 +51,14 @@ public class OpenFoodFactsLoader {
         retriesNum = 0;
         OpenFoodFactsSearch openFoodFactsSearch = new Gson().fromJson(response, OpenFoodFactsSearch.class);
         for (Product product : openFoodFactsSearch.getProducts()) {
+            if (product.isFull()) {
+                this.products.add(product);
+            }
             if (this.products.size() == prodNum) {
                 this.recyclerView.setAdapter(new ProductAdapter(products));
                 this.recyclerView.setVisibility(View.VISIBLE);
                 this.progressBar.setVisibility(View.INVISIBLE);
                 break;
-            }
-            if (product.isFull()) {
-                this.products.add(product);
             }
         }
         if (this.products.size() < this.prodNum) {
@@ -78,15 +78,15 @@ public class OpenFoodFactsLoader {
                     "Connection to server was interrupted. Data may be incomplete",
                     Toast.LENGTH_LONG).show();
             if (this.products.size() == 0) {
-                products.add(new Product(0,
+                products.add(new Product("0",
                         "error",
                         -2,
+                        "",
                         "",
                         ""));
             }
             this.recyclerView.setAdapter(new ProductAdapter(this.products));
             this.recyclerView.setVisibility(View.VISIBLE);
         }
-        //todo
     }
 }

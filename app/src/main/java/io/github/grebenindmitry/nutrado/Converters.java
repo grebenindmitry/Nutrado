@@ -1,5 +1,7 @@
 package io.github.grebenindmitry.nutrado;
 
+import android.graphics.Color;
+
 import androidx.room.TypeConverter;
 
 public class Converters {
@@ -11,5 +13,15 @@ public class Converters {
     @TypeConverter
     public ProductNutriments floatToNutriments(float energy) {
         return new ProductNutriments(energy);
+    }
+
+    @TypeConverter
+    public Color intToColor(int color) {
+        return Color.valueOf(color);
+    }
+
+    @TypeConverter
+    public int colorToInt(Color color) {
+        return color.toArgb();
     }
 }

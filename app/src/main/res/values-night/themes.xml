@@ -18,8 +18,8 @@
     <!--Top level DayNight theme to be used in AndroidManifest.xml-->
     <style name="Theme.Nutrado" parent="Base.Theme.Nutrado">
         <!--Material color attributes (dark theme) -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_600</item>
+        <item name="colorPrimary">@color/blue_200</item>
+        <item name="colorPrimaryVariant">@color/blue_600</item>
         <item name="colorSecondary">@color/green_200</item>
         <item name="colorSecondaryVariant">@color/green_500</item>
         <item name="android:colorBackground">@color/black_900</item>

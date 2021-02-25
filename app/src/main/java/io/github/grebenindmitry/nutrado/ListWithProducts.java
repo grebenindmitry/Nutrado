@@ -6,12 +6,17 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-public class ListsWithProducts {
+public class ListWithProducts {
     @Embedded public ProductList list;
     @Relation(
             parentColumn = "listId",
+            entity = Product.class,
             entityColumn = "productId",
-            associateBy = @Junction(ProductListCrossref.class)
+            associateBy = @Junction(
+                    value = ProductListCrossref.class,
+                    parentColumn = "listId",
+                    entityColumn = "productId"
+            )
     )
     public List<Product> products;
 }

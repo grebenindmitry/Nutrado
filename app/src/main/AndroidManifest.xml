@@ -22,8 +22,11 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/action_settings">
-        </activity>
+            android:label="@string/action_settings" />
+        <activity
+            android:name=".ProductActivity"
+            android:label="Product Info" />
+
     </application>
 
 </manifest>

@@ -7,8 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-
     <item
-        android:id="@+id/action_add_list"
-        android:title="@string/add_list_title" />
+        android:id="@+id/action_read_db"
+        android:title="@string/read_db" />
+    <item
+        android:id="@+id/action_test"
+        android:title="Test" />
 </menu>

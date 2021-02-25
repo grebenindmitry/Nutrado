@@ -1,42 +1,51 @@
 package io.github.grebenindmitry.nutrado;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigInteger;
+
 @Entity(tableName = "products")
 public class Product {
     @SerializedName("id")
-    @PrimaryKey private long productId;
+    @PrimaryKey @NonNull
+    private String productId;
     @SerializedName("product_name")
     private String name;
     @SerializedName("nutrition_grades")
     private String grade;
     @SerializedName("image_front_small_url")
     private String thumbUrl;
+    @SerializedName("image_url")
+    private String imageUrl;
     @SerializedName("nutriments")
     private ProductNutriments nutriments;
 
     public Product() {
-        this.productId = -1;
+        this.productId = "-1";
         this.name = "";
         this.grade = "";
         this.thumbUrl = "";
+        this.imageUrl = "";
         this.nutriments = new ProductNutriments();
     }
 
-    public Product(int id, String name, float energy, String score, String thumbUrl) {
+    public Product(String id, String name, float energy, String score, String thumbUrl, String imageUrl) {
         this.productId = id;
         this.name = name;
         this.grade = score;
         this.thumbUrl = thumbUrl;
+        this.imageUrl = imageUrl;
         this.nutriments = new ProductNutriments();
         nutriments.setEnergy(energy);
     }
 
     //getters
-    public long getProductId() {
+    @NonNull
+    public String getProductId() {
         return productId;
     }
 
@@ -50,6 +59,10 @@ public class Product {
 
     public String getThumbUrl() {
         return thumbUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public float getEnergy() {
@@ -66,7 +79,7 @@ public class Product {
     //end getters
 
     //setters
-    public void setProductId(long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -82,6 +95,10 @@ public class Product {
         this.thumbUrl = thumbUrl;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public void setNutriments(ProductNutriments nutriments) {
         this.nutriments = nutriments;
     }
@@ -93,7 +110,7 @@ public class Product {
 
     //methods
     public boolean isFull() {
-        return (productId != -1 && !name.equals("") && !grade.equals("") && !thumbUrl.equals("") && !getPrintEnergy().equals("N/a"));
+        return (!productId.equals("-1") && !name.equals("") && !grade.equals("") && !thumbUrl.equals("") && !getPrintEnergy().equals("N/a"));
     }
     //end methods
 }

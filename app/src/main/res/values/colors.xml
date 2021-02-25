@@ -2,10 +2,10 @@
 <resources>
     <!--Color palette-->
 
-    <color name="purple_200">#90CAF9</color> <!--Color primary (dark)-->
-    <color name="purple_500">#2196F3</color> <!--Color primary (light)-->
-    <color name="purple_600">#1E88E5</color> <!--Color primary variant (dark)-->
-    <color name="purple_700">#1976D2</color> <!--Color primary variant (light)-->
+    <color name="blue_200">#90CAF9</color> <!--Color primary (dark)-->
+    <color name="blue_500">#2196F3</color> <!--Color primary (light)-->
+    <color name="blue_600">#1E88E5</color> <!--Color primary variant (dark)-->
+    <color name="blue_700">#1976D2</color> <!--Color primary variant (light)-->
 
     <color name="green_200">#A5D6A7</color> <!--Color secondary-->
     <color name="green_500">#4CAF50</color> <!--Color secondary variant-->
@@ -23,4 +23,8 @@
     <color name="black_900">#000000</color>
 
     <color name="ic_launcher_background">#4A6572</color>
+    <color name="yellow_600">#FDD835</color>
+    <color name="purple_600">#5E35B1</color>
+    <color name="cyan_600">#00ACC1</color>
+    <color name="orange_600">#FB8C00</color>
 </resources>

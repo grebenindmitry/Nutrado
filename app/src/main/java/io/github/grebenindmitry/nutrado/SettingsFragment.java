@@ -16,20 +16,5 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
-        SwitchPreferenceCompat overrideDarkMode = findPreference("overrideDarkMode");
-        if (overrideDarkMode != null) {
-            overrideDarkMode.setOnPreferenceChangeListener(((preference, newValue) -> {
-                Toast.makeText(getContext(), "Please restart to apply theme", Toast.LENGTH_SHORT).show();
-                return true;
-            }));
-        }
-
-        SwitchPreferenceCompat darkMode = findPreference("darkMode");
-        if (darkMode != null) {
-            darkMode.setOnPreferenceChangeListener(((preference, newValue) -> {
-                Toast.makeText(getContext(), "Please restart to apply theme", Toast.LENGTH_SHORT).show();
-                return true;
-            }));
-        }
     }
 }
