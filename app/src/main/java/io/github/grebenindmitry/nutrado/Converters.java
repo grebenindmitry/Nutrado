@@ -1,7 +1,6 @@
 package io.github.grebenindmitry.nutrado;
 
 import android.graphics.Color;
-
 import androidx.room.TypeConverter;
 
 public class Converters {

@@ -8,9 +8,9 @@ import androidx.room.ForeignKey;
 public class ProductListCrossref {
     @NonNull
     @ForeignKey(entity = Product.class, parentColumns = "productId", childColumns = "productId", onDelete = ForeignKey.CASCADE)
-    public String productId;
+    public final String productId;
     @ForeignKey(entity = ProductList.class, parentColumns = "listId", childColumns = "listId", onDelete = ForeignKey.CASCADE)
-    public int listId;
+    public final int listId;
 
     public ProductListCrossref(@NonNull String productId, int listId) {
         this.productId = productId;

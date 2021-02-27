@@ -18,10 +18,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--Components-->
-    <style name="Widget.Nutrado.ImageButton" parent="Widget.AppCompat.ImageButton">
-        <item name="android:backgroundTint">?attr/colorPrimary</item>
-        <item name="android:tint">?attr/colorOnPrimary</item>
-    </style>
 
     <!--Bottom Sheets-->
     <style name="ThemeOverlay.Nutrado.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">

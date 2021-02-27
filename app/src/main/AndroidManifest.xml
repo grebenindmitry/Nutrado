@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.github.grebenindmitry.nutrado">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:fullBackupContent="true"
         android:allowBackup="true"
@@ -26,6 +29,12 @@
         <activity
             android:name=".ProductActivity"
             android:label="Product Info" />
+        <activity
+            android:name=".CreateListActivity"
+            android:label="Create List" />
+        <activity
+            android:name=".AddProductActivity"
+            android:label="Add Product" />
 
     </application>
 

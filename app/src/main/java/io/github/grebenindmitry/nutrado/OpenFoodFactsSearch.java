@@ -1,7 +1,6 @@
 package io.github.grebenindmitry.nutrado;
 
 import com.google.gson.annotations.SerializedName;
-
 import java.util.Vector;
 
 public class OpenFoodFactsSearch {

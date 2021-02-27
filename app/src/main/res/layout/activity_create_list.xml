@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            app:navigationContentDescription="@string/back"
+            app:navigationIcon="@drawable/ic_outline_arrow_back_24"
+            app:navigationIconTint="?attr/colorOnPrimary"
+            app:title="@string/add_list"
+            app:titleTextColor="?attr/colorOnPrimary" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/list_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/list_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/list_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/list_desc"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/list_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/list_desc_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/list_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list_desc"
+            app:strokeColor="@color/card_outline"
+            android:backgroundTint="#00000000"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_icon"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:alpha=".6"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/list_icon_grp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_icon_star"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_outline_star_24"
+                        app:chipIconEnabled="true"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_icon_basket"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_outline_shopping_basket_24"
+                        app:chipIconEnabled="true"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_icon_smile"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_outline_sentiment_very_satisfied_24"
+                        app:chipIconEnabled="true"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_icon_cart"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_outline_local_grocery_store_24"
+                        app:chipIconEnabled="true"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_icon_bookmark"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        android:checked="true"
+                        app:chipIcon="@drawable/ic_outline_bookmark_24"
+                        app:chipIconEnabled="true"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/list_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list_icon"
+            app:strokeColor="@color/card_outline"
+            android:backgroundTint="#00000000"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_color"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:alpha=".6" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/list_color_grp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_color_red"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_baseline_circle_24"
+                        app:chipIconEnabled="true"
+                        app:chipIconTint="@color/red_transparent_600"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp"
+                        android:checked="true"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_color_green"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_baseline_circle_24"
+                        app:chipIconEnabled="true"
+                        app:chipIconTint="@color/green_transparent_500"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_color_blue"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_baseline_circle_24"
+                        app:chipIconEnabled="true"
+                        app:chipIconTint="@color/blue_transparent_700"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_color_yellow"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_baseline_circle_24"
+                        app:chipIconEnabled="true"
+                        app:chipIconTint="@color/yellow_transparent_600"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_color_purple"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipEndPadding="4dp"
+                        app:chipIcon="@drawable/ic_baseline_circle_24"
+                        app:chipIconEnabled="true"
+                        app:chipIconTint="@color/purple_transparent_600"
+                        app:chipStartPadding="4dp"
+                        app:textEndPadding="0dp"
+                        app:textStartPadding="0dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_list_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/list_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="8dp"
+            android:text="@string/create"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

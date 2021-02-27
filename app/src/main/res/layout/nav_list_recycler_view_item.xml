@@ -26,7 +26,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/linear_texts"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_outline_bookmark_24" />
+                tools:src="@drawable/ic_outline_bookmark_24"
+                android:contentDescription="@string/list_icon"/>
 
             <LinearLayout
                 android:id="@+id/linear_texts"

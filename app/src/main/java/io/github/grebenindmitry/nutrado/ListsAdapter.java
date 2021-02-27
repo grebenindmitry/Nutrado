@@ -1,26 +1,18 @@
 package io.github.grebenindmitry.nutrado;
 
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.card.MaterialCardView;
-
-import org.w3c.dom.Text;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-import java.util.concurrent.Executors;
 
 public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> {
     private final List<ProductList> lists;
@@ -38,8 +30,14 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
         }
     }
 
-    public ListsAdapter(List<ProductList> lists) {
-        this.lists = lists;
+    public ListsAdapter(List<ProductList> newLists) {
+        this.lists = new ArrayList<>();
+        //remove the offline list
+        for (ProductList list : newLists) {
+            if (list.getListId() != -2) {
+                this.lists.add(list);
+            }
+        }
     }
 
     @NonNull
@@ -56,11 +54,25 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
         Context context = view.getContext();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         MaterialCardView materialCardView = view.findViewById(R.id.list_card);
+
         ProductList list = this.lists.get(position);
+
         ((TextView) view.findViewById(R.id.list_title)).setText(list.getName());
         ((TextView) view.findViewById(R.id.list_desc)).setText(list.getDescription());
         ((ImageView) view.findViewById(R.id.list_icon)).setImageResource(list.getIcon());
-        if (preferences.getInt("selectedList", -1) == list.getListId()) {
+
+        //if the app is offline style the online list as offline
+        if (preferences.getBoolean("offline", false) && list.getListId() == -1) {
+            ((TextView) view.findViewById(R.id.list_title)).setText(context.getString(R.string.offline));
+            ((TextView) view.findViewById(R.id.list_desc)).setText(context.getString(R.string.offline_desc));
+            ((ImageView) view.findViewById(R.id.list_icon)).setImageResource(R.drawable.ic_outline_wifi_off_24);
+            materialCardView.setCardBackgroundColor(0x7FE53935);
+            //if the current list selected is offline make it selected
+            if (preferences.getInt("selectedList", -1) == -2) {
+                materialCardView.setCardBackgroundColor(0x7F721C1A);
+            }
+        //if the current viewholder represents a list that is selected mark it
+        } else if (preferences.getInt("selectedList", -1) == list.getListId()) {
             materialCardView.setCardBackgroundColor(list.getDarkColor().toArgb());
         } else {
             materialCardView.setCardBackgroundColor(list.getColor().toArgb());
@@ -72,6 +84,6 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return lists.size();
+        return this.lists.size();
     }
 }

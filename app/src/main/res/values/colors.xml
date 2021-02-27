@@ -23,8 +23,11 @@
     <color name="black_900">#000000</color>
 
     <color name="ic_launcher_background">#4A6572</color>
-    <color name="yellow_600">#FDD835</color>
-    <color name="purple_600">#5E35B1</color>
+    <color name="yellow_transparent_600">#7FFDD835</color>
+    <color name="purple_transparent_600">#7F5E35B1</color>
     <color name="cyan_600">#00ACC1</color>
     <color name="orange_600">#FB8C00</color>
+    <color name="red_transparent_600">#7FE53935</color>
+    <color name="green_transparent_500">#7F4CAF50</color>
+    <color name="blue_transparent_700">#7F1976D2</color>
 </resources>

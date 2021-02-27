@@ -3,10 +3,8 @@ package io.github.grebenindmitry.nutrado;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import com.google.gson.annotations.SerializedName;
-
-import java.math.BigInteger;
+import org.jetbrains.annotations.NotNull;
 
 @Entity(tableName = "products")
 public class Product {
@@ -23,6 +21,8 @@ public class Product {
     private String imageUrl;
     @SerializedName("nutriments")
     private ProductNutriments nutriments;
+    @SerializedName("ingredients_text")
+    private String ingredients;
 
     public Product() {
         this.productId = "-1";
@@ -31,16 +31,18 @@ public class Product {
         this.thumbUrl = "";
         this.imageUrl = "";
         this.nutriments = new ProductNutriments();
+        this.ingredients = "";
     }
 
-    public Product(String id, String name, float energy, String score, String thumbUrl, String imageUrl) {
+    public Product(@org.jetbrains.annotations.NotNull String id, String name, float energy, String score, String thumbUrl, String imageUrl, String ingredients) {
         this.productId = id;
         this.name = name;
         this.grade = score;
         this.thumbUrl = thumbUrl;
         this.imageUrl = imageUrl;
         this.nutriments = new ProductNutriments();
-        nutriments.setEnergy(energy);
+        this.nutriments.setEnergy(energy);
+        this.ingredients = ingredients;
     }
 
     //getters
@@ -76,10 +78,14 @@ public class Product {
     public ProductNutriments getNutriments() {
         return nutriments;
     }
+
+    public String getIngredients() {
+        return ingredients;
+    }
     //end getters
 
     //setters
-    public void setProductId(String productId) {
+    public void setProductId(@NotNull String productId) {
         this.productId = productId;
     }
 
@@ -105,6 +111,10 @@ public class Product {
 
     public void setEnergy(float energy) {
         nutriments.setEnergy(energy);
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
     //end setters
 
