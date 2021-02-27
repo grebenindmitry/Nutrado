@@ -20,8 +20,8 @@ public class CreateListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_list);
 
         Toolbar toolbar = findViewById(R.id.appbar);
-        toolbar.setNavigationOnClickListener((view) -> finish());
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener((view) -> finish());
 
         TextView name = findViewById(R.id.list_name_text);
         TextInputLayout nameLayout = findViewById(R.id.list_name);
