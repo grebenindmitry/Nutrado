@@ -2,7 +2,7 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawerLayout"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:openDrawer="start">
@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivityOld">
 
         <include layout="@layout/content_main" />
 
@@ -22,7 +22,7 @@
             android:contentDescription="@string/qr_alt"
             android:focusable="true"
             android:tooltipText="@string/qr_alt"
-            app:layout_anchor="@+id/bottomAppBar"
+            app:layout_anchor="@id/bottomAppBar"
             app:layout_anchorGravity="center"
             app:srcCompat="@drawable/ic_outline_qr_code_scanner_24" />
 
@@ -42,6 +42,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start">
@@ -58,10 +59,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/lists_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintBottom_toTopOf="@id/divider"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/divider"

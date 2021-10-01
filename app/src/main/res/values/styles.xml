@@ -16,20 +16,11 @@
 -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <!--Components-->
-
     <!--Bottom Sheets-->
     <style name="ThemeOverlay.Nutrado.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="bottomSheetStyle">@style/Widget.Nutrado.BottomSheet.Modal</item>
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">@android:color/transparent</item>
-    </style>
-    <style name="Widget.Nutrado.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="shapeAppearanceOverlay">?attr/shapeAppearanceLargeComponent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
     </style>
 
     <!--Navigation Drawer-->

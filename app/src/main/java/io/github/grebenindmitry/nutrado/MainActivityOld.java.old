@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityOld extends AppCompatActivity {
     private final String TAG = "nutrado-main";
     private ScheduledExecutorService repeater;
     private int selectedList = -1;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             final ListDAO dao = MyDatabase.getDatabase(this).listDAO();
             RecyclerView listsRecyclerView = findViewById(R.id.nav_list_recycler);
             List<ProductList> lists = dao.getLists();
-            runOnUiThread(() -> listsRecyclerView.setAdapter(new ListsAdapter((List<ProductList>) lists)));
+            runOnUiThread(() -> listsRecyclerView.setAdapter(new ListsAdapter((List<ProductList>) lists, )));
         });
     }
 
@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.bottomAppBar);
         setSupportActionBar(toolbar);
 

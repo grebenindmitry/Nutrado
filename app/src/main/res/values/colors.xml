@@ -30,4 +30,10 @@
     <color name="red_transparent_600">#7FE53935</color>
     <color name="green_transparent_500">#7F4CAF50</color>
     <color name="blue_transparent_700">#7F1976D2</color>
+
+    <color name="offline">#7FE53935</color>
+    <color name="offline_selected">#7F721C1A</color>
+
+    <color name="online">#7F4CAF50</color>
+    <color name="online_selected">#FF4CAF50</color>
 </resources>

@@ -30,6 +30,15 @@
     <string name="yes">Yes</string>
     <string name="offline">Offline</string>
     <string name="offline_desc">Data downloaded upon last execution of the app</string>
+    <string name="online">Online</string>
+    <string name="online_desc">Products loaded from OpenFoodFacts API</string>
     <string name="input_barcode">Input barcode</string>
     <string name="ingredients">Ingredients</string>
+    <string name="star_icon" translatable="false">\@drawable/ic_outline_star_24</string>
+    <string name="basket_icon" translatable="false">\@drawable/ic_outline_shopping_basket_24</string>
+    <string name="smile_icon" translatable="false">\@drawable/ic_outline_sentiment_very_satisfied_24</string>
+    <string name="cart_icon" translatable="false">\@drawable/ic_outline_local_grocery_store_24</string>
+    <string name="bookmark_icon" translatable="false">\@drawable/ic_outline_bookmark_24</string>
+    <string name="wifi_icon" translatable="false">\@drawable/ic_outline_wifi_24</string>
+    <string name="wifi_off_icon" translatable="false">\@drawable/ic_outline_wifi_off_24</string>
 </resources>

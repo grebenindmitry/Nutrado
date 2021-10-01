@@ -1,0 +1,132 @@
+package io.github.grebenindmitry.nutrado
+
+import android.content.Context
+import android.view.View
+import android.widget.ProgressBar
+import com.android.volley.RequestQueue
+import io.github.grebenindmitry.nutrado.Product
+import com.android.volley.toolbox.StringRequest
+import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.VolleyError
+import io.github.grebenindmitry.nutrado.OpenFoodFactsSearch
+import com.google.gson.Gson
+import io.github.grebenindmitry.nutrado.ProductAdapter
+import io.github.grebenindmitry.nutrado.ProductDAO
+import io.github.grebenindmitry.nutrado.MyDatabase
+import io.github.grebenindmitry.nutrado.ListWithProductsDAO
+import io.github.grebenindmitry.nutrado.ProductListCrossref
+import android.widget.Toast
+import com.android.volley.toolbox.Volley
+import java.util.*
+import java.util.concurrent.Executors
+
+class OpenFoodFactsLoader(private val context: Context, private val url: String) {
+    private val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+    private val products: Vector<Product> = Vector()
+    private var request: StringRequest? = null
+    private var recyclerView: RecyclerView? = null
+    private var progressBar: ProgressBar? = null
+    private var prodNum = 0
+    private var pageNum: Int = 1
+    private var retriesNum: Int
+    fun setRecyclerAdapter(
+        prodNum: Int,
+        category: String,
+        recyclerView: RecyclerView,
+        progressBar: ProgressBar
+    ) {
+        this.progressBar = progressBar
+        this.prodNum = prodNum
+        this.recyclerView = recyclerView
+        //set up the progressbar
+        progressBar.max = prodNum
+        progressBar.progress = 0
+
+        //start the request loop, which will run until there are prodNum full products
+        request = StringRequest(
+            "$url/category/$category.json?page=$pageNum",
+            { response: String -> handleResponse(response) }) { error: VolleyError ->
+            handleError(
+                error
+            )
+        }
+        requestQueue.add(request)
+    }
+
+    private fun handleResponse(response: String) {
+        //reset the retry counter
+        retriesNum = 0
+        val openFoodFactsSearch = Gson().fromJson(response, OpenFoodFactsSearch::class.java)
+        for (product in openFoodFactsSearch.products) {
+            //if product full add it
+            if (product.isFull) {
+                products.add(product)
+            }
+            //base case of recursion
+            if (products.size == prodNum) {
+                //set the adapter
+                recyclerView!!.adapter = ProductAdapter(products)
+                val productDAO = MyDatabase.getDatabase(context).productDAO()
+                val listWithProductsDAO = MyDatabase.getDatabase(context).listWithProductsDAO()
+                //add all the products to the offline list
+                for (product1 in products) {
+                    Executors.newSingleThreadExecutor().execute {
+                        productDAO.insert(product1)
+                        listWithProductsDAO.addProductToList(
+                            ProductListCrossref(
+                                product1.productId,
+                                -2
+                            )
+                        )
+                    }
+                }
+                recyclerView!!.visibility = View.VISIBLE
+                progressBar!!.visibility = View.INVISIBLE
+                break
+            }
+        }
+        //if there aren't enough products increment pageNum and start another request
+        if (products.size < prodNum) {
+            pageNum++
+            requestQueue.add(request)
+        }
+        //update the progressbar
+        progressBar!!.setProgress(products.size, true)
+    }
+
+    private fun handleError(error: VolleyError) {
+        //if there have been less than 3 retries, try again
+        if (retriesNum < 2) {
+            retriesNum++
+            requestQueue.add(request)
+        } else {
+            //otherwise print a message
+            Toast.makeText(
+                context,
+                "Connection to server was interrupted. Data may be incomplete",
+                Toast.LENGTH_LONG
+            ).show()
+            //if no products were downloaded add a dummy error one
+            if (products.size == 0) {
+                products.add(
+                    Product(
+                        "0",
+                        "error",
+                        -2,
+                        "",
+                        "",
+                        "",
+                        ""
+                    )
+                )
+            }
+            //set the adapter
+            recyclerView!!.adapter = ProductAdapter(products)
+            recyclerView!!.visibility = View.VISIBLE
+        }
+    }
+
+    init {
+        retriesNum = 0
+    }
+}
